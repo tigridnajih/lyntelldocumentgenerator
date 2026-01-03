@@ -16,8 +16,8 @@ export function VoiceMicrophone({ isListening, onToggle }: VoiceMicrophoneProps)
             className={cn(
                 "fixed bottom-8 right-8 z-50 p-4 rounded-full shadow-lg transition-all duration-300",
                 isListening
-                    ? "bg-red-500 hover:bg-red-600 animate-pulse"
-                    : "bg-orange-500 hover:bg-orange-600 hover:scale-105"
+                    ? "bg-red-600 hover:bg-red-700 animate-pulse"
+                    : "bg-teal-600 hover:bg-teal-500 hover:scale-105"
             )}
             title={isListening ? "Stop Recording" : "Start Voice Input"}
         >

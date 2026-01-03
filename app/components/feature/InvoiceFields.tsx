@@ -36,7 +36,7 @@ export function InvoiceFields() {
                     <button
                         type="button"
                         onClick={() => appendItem({ name: "", rate: 0, quantity: 0 })}
-                        className="flex items-center gap-1 text-sm text-orange-400 hover:text-orange-300 transition-colors"
+                        className="flex items-center gap-1 text-sm text-teal-600 hover:text-teal-500 transition-colors"
                     >
                         <Plus className="w-4 h-4" /> Add Item
                     </button>
@@ -79,7 +79,7 @@ export function InvoiceFields() {
                                 <button
                                     type="button"
                                     onClick={() => removeItem(index)}
-                                    className="p-2 text-red-400 hover:text-red-300 hover:bg-red-400/10 rounded-lg transition-colors"
+                                    className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-colors"
                                 >
                                     <Trash2 className="w-4 h-4" />
                                 </button>
@@ -95,7 +95,7 @@ export function InvoiceFields() {
                     <button
                         type="button"
                         onClick={() => appendGst({ type: "CGST", rate: 0 })}
-                        className="flex items-center gap-1 text-sm text-orange-400 hover:text-orange-300 transition-colors"
+                        className="flex items-center gap-1 text-sm text-teal-600 hover:text-teal-500 transition-colors"
                     >
                         <Plus className="w-4 h-4" /> Add GST
                     </button>
@@ -114,13 +114,13 @@ export function InvoiceFields() {
                             <div className="sm:col-span-2 relative">
                                 <select
                                     {...register(`gstList.${index}.type` as const)}
-                                    className="w-full bg-neutral-900 border border-neutral-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-orange-500/50 appearance-none"
+                                    className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-teal-500/50 appearance-none text-slate-900"
                                 >
                                     <option value="CGST">CGST</option>
                                     <option value="SGST">SGST</option>
                                     <option value="IGST">IGST</option>
                                 </select>
-                                <div className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-500 pointer-events-none">
+                                <div className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none">
                                     <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" /></svg>
                                 </div>
                             </div>
@@ -138,7 +138,7 @@ export function InvoiceFields() {
                                 <button
                                     type="button"
                                     onClick={() => removeGst(index)}
-                                    className="p-2 text-red-400 hover:text-red-300 hover:bg-red-400/10 rounded-lg transition-colors"
+                                    className="p-2 text-slate-400 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-colors"
                                 >
                                     <Trash2 className="w-4 h-4" />
                                 </button>

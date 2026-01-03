@@ -34,12 +34,12 @@ export function LiveTotal() {
         <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="bg-neutral-900/50 backdrop-blur-md border border-neutral-800 rounded-2xl p-6 space-y-4"
+            className="bg-slate-50 border border-slate-200 rounded-2xl p-6 space-y-4"
         >
-            <h3 className="font-semibold text-orange-500 tracking-wide">Payment Summary</h3>
+            <h3 className="font-semibold text-teal-700 tracking-wide">Payment Summary</h3>
 
             <div className="space-y-2 text-sm">
-                <div className="flex justify-between text-neutral-400">
+                <div className="flex justify-between text-slate-600">
                     <span>Subtotal</span>
                     <span>{formatCurrency(subTotal)}</span>
                 </div>
@@ -51,7 +51,7 @@ export function LiveTotal() {
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: "auto" }}
                             exit={{ opacity: 0, height: 0 }}
-                            className="flex justify-between text-neutral-400"
+                            className="flex justify-between text-slate-600"
                         >
                             <span>{gst.type} ({gst.rate}%)</span>
                             <span>{formatCurrency((subTotal * (Number(gst.rate) || 0)) / 100)}</span>
@@ -60,9 +60,9 @@ export function LiveTotal() {
                 </AnimatePresence>
             </div>
 
-            <div className="border-t border-neutral-800 pt-4 flex justify-between font-bold text-lg">
-                <span>Total</span>
-                <span className="text-orange-500">{formatCurrency(grandTotal)}</span>
+            <div className="border-t border-slate-200 pt-4 flex justify-between font-bold text-lg">
+                <span className="text-slate-900">Total</span>
+                <span className="text-teal-600">{formatCurrency(grandTotal)}</span>
             </div>
         </motion.div>
     );

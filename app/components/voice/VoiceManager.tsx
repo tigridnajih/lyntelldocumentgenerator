@@ -243,7 +243,7 @@ export function VoiceManager() {
                         </div>
                         <div className="flex gap-3">
                             <button onClick={() => setShowPermissionHelp(false)} className="flex-1 px-4 py-2 rounded-lg bg-neutral-800 text-white hover:bg-neutral-700 transition">Close</button>
-                            <button onClick={() => window.location.reload()} className="flex-1 px-4 py-2 rounded-lg bg-orange-500 text-white hover:bg-orange-600 transition">Reload Page</button>
+                            <button onClick={() => window.location.reload()} className="flex-1 px-4 py-2 rounded-lg bg-teal-600 text-white hover:bg-teal-500 transition">Reload Page</button>
                         </div>
                     </div>
                 </div>

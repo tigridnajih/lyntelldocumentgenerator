@@ -230,8 +230,8 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen bg-neutral-950 text-white">
-      <div className="sticky top-0 z-50 bg-neutral-950/80 backdrop-blur border-b border-neutral-800">
+    <main className="min-h-screen bg-white text-slate-900">
+      <div className="sticky top-0 z-50 bg-white/80 backdrop-blur border-b border-slate-200">
         <div className="max-w-5xl mx-auto px-4 py-4 flex items-center">
           <Image
             src="/logo.png"
@@ -246,9 +246,9 @@ export default function Home() {
       <div className="max-w-5xl mx-auto px-4 py-10 space-y-10">
         <div className="text-center space-y-2">
           <h1 className="font-bold tracking-tight text-3xl sm:text-4xl">
-            Business Document <span className="text-orange-500">Generator</span>
+            Business Document <span className="text-teal-600">Generator</span>
           </h1>
-          <p className="text-sm text-neutral-400">
+          <p className="text-sm text-slate-500">
             Generate professional business documents instantly
           </p>
         </div>
@@ -292,7 +292,7 @@ export default function Home() {
           />
           <form
             onSubmit={handleSubmit(onSubmit)}
-            className="bg-gradient-to-b from-neutral-900 to-neutral-950 border border-neutral-800 rounded-2xl p-6 sm:p-8 space-y-8"
+            className="bg-white border border-slate-200 rounded-2xl p-6 sm:p-8 space-y-8 shadow-sm"
           >
             <Section title="Client Details">
               <Input

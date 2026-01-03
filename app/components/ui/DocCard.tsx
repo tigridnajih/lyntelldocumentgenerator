@@ -62,24 +62,24 @@ export function DocCard({
             onMouseLeave={handleMouseLeave}
             onClick={() => onSelect(type)}
             className={clsx(
-                "relative overflow-hidden rounded-2xl border bg-neutral-900 p-5 cursor-pointer transition-colors duration-300 group",
-                active ? "border-orange-500/50" : "border-neutral-800"
+                "relative overflow-hidden rounded-2xl border bg-white p-5 cursor-pointer transition-colors duration-300 group shadow-sm hover:shadow-md",
+                active ? "border-teal-500 ring-1 ring-teal-500" : "border-slate-200 hover:border-slate-300"
             )}
         >
             <div
                 className="pointer-events-none absolute -inset-px opacity-0 transition duration-300 group-hover:opacity-100"
                 style={{
-                    background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(255,165,0,.15), transparent 40%)`,
+                    background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(13,148,136,.1), transparent 40%)`,
                 }}
             />
             <div className="relative z-10">
-                {icon && <div className={clsx("mb-3 transition-colors", active ? "text-orange-500" : "text-neutral-500 group-hover:text-neutral-300")}>{icon}</div>}
-                <h3 className={clsx("font-semibold mb-1 transition-colors", active ? "text-orange-500" : "text-neutral-200 group-hover:text-white")}>{label}</h3>
-                <p className="text-sm text-neutral-400">{description}</p>
+                {icon && <div className={clsx("mb-3 transition-colors", active ? "text-teal-600" : "text-slate-500 group-hover:text-teal-600")}>{icon}</div>}
+                <h3 className={clsx("font-semibold mb-1 transition-colors", active ? "text-teal-900" : "text-slate-900")}>{label}</h3>
+                <p className="text-sm text-slate-500 group-hover:text-slate-600">{description}</p>
             </div>
 
             {active && (
-                <div className="absolute inset-0 bg-orange-500/5 pointer-events-none" />
+                <div className="absolute inset-0 bg-teal-50/50 pointer-events-none" />
             )}
         </div>
     );
