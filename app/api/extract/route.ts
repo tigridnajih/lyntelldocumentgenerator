@@ -7,14 +7,15 @@ const groq = new Groq({
 
 const systemPrompt = `
 You are a precise data extraction assistant for a business document generator.
-Your task is to extract structured client and invoice details from a voice transcript.
+Your task is to extract structured client, invoice, or purchase order details from a voice transcript.
 
 STRICT EXTRACTION RULES:
-1. Extract these fields:
+1. Extract these fields depending on what is mentioned:
     - clientDetails: { clientName, clientCompany, clientEmail, clientLocality, clientCity, clientPincode, clientState }
     - invoiceDetails: { invoiceNumber, invoiceDate }
     - items: array of { name, rate, quantity }
     - gstList: array of { type (CGST/SGST/IGST), rate }
+    - purchaseOrderDetails: { material, quantity, variant, brand, unit, vendors (array of strings), description }
 
 2. TRANSLATION & NAMES (CRITICAL):
     - Input transcript may be in any language (e.g., Malayalam, Hindi).
@@ -22,8 +23,8 @@ STRICT EXTRACTION RULES:
     - PROPER NAMES: Transliterate to English script.
 
 3. Return JSON ONLY.
-    - Format: { "clientDetails": { ... }, "invoiceDetails": { ... }, "items": [ ... ], "gstList": [ ... ] }
-    - If a field is not mentioned, exclude it or set it to null.
+    - Format: { "clientDetails": { ... }, "invoiceDetails": { ... }, "items": [ ... ], "gstList": [ ... ], "purchaseOrderDetails": { ... } }
+    - If a field or object is not mentioned, exclude it or set it to null.
     - Do not return markdown code blocks. Just the raw JSON.
 `;
 
@@ -60,10 +61,11 @@ export async function POST(req: Request) {
         const extractedData = JSON.parse(content);
 
         return NextResponse.json({ success: true, data: extractedData });
-    } catch (error: any) {
+    } catch (error: unknown) {
         console.error("Extraction error details:", error);
+        const message = error instanceof Error ? error.message : "Failed to extract data";
         return NextResponse.json(
-            { error: error?.message || "Failed to extract data" },
+            { error: message },
             { status: 500 }
         );
     }

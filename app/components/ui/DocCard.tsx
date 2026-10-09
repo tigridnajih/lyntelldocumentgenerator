@@ -22,7 +22,6 @@ export function DocCard({
     icon,
 }: DocCardProps) {
     const divRef = useRef<HTMLDivElement>(null);
-    const [isFocused, setIsFocused] = useState(false);
     const [position, setPosition] = useState({ x: 0, y: 0 });
 
     const handleMouseMove = (e: MouseEvent<HTMLDivElement>) => {
@@ -34,32 +33,12 @@ export function DocCard({
         setPosition({ x: e.clientX - rect.left, y: e.clientY - rect.top });
     };
 
-    const handleFocus = () => {
-        setIsFocused(true);
-    };
-
-    const handleBlur = () => {
-        setIsFocused(false);
-    };
-
-    const handleMouseEnter = () => {
-        setIsFocused(true);
-    };
-
-    const handleMouseLeave = () => {
-        setIsFocused(false);
-    };
-
     const active = currentType === type;
 
     return (
         <div
             ref={divRef}
             onMouseMove={handleMouseMove}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
             onClick={() => onSelect(type)}
             className={clsx(
                 "relative overflow-hidden rounded-2xl border bg-white p-5 cursor-pointer transition-colors duration-300 group shadow-sm hover:shadow-md",

@@ -1,6 +1,6 @@
 "use client";
 
-import { Check, Download, ExternalLink, X } from "lucide-react";
+import { Check, Download, ExternalLink, X, FileText } from "lucide-react";
 
 interface DocumentSuccessModalProps {
     isOpen: boolean;
@@ -26,8 +26,8 @@ export function DocumentSuccessModal({
             <div className="relative bg-[#111111] border border-neutral-800 rounded-2xl w-full max-w-md shadow-2xl overflow-hidden animate-in zoom-in-95 duration-200">
                 <div className="p-6 text-center space-y-6">
                     {/* Success Icon */}
-                    <div className="w-16 h-16 bg-orange-500/10 rounded-full flex items-center justify-center mx-auto border border-orange-500/20">
-                        <Check className="w-8 h-8 text-orange-500" />
+                    <div className="w-16 h-16 bg-teal-500/10 rounded-full flex items-center justify-center mx-auto border border-teal-500/20">
+                        <Check className="w-8 h-8 text-teal-500" />
                     </div>
 
                     {/* Text Content */}
@@ -36,8 +36,14 @@ export function DocumentSuccessModal({
                             Document Generated!
                         </h3>
                         <p className="text-neutral-400 text-sm">
-                            Your <span className="text-white font-medium">{(docType || "document").toUpperCase()}</span> document is ready.
+                            Your <span className="text-white font-medium">{(docType || "document").replace("_", " ").toUpperCase()}</span> document is ready.
                         </p>
+                        {fileName && (
+                            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-neutral-900 border border-neutral-800 text-xs text-neutral-300">
+                                <FileText className="w-3.5 h-3.5 text-teal-400" />
+                                <span className="truncate max-w-[260px]">{fileName}</span>
+                            </div>
+                        )}
                     </div>
 
                     {/* Action Buttons */}
@@ -58,7 +64,7 @@ export function DocumentSuccessModal({
                                 href={downloadUrl}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={`flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-orange-500 text-white hover:bg-orange-600 transition-all font-medium shadow-lg shadow-orange-500/20 ${!viewUrl ? "col-span-2" : ""
+                                className={`flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-teal-600 text-white hover:bg-teal-500 transition-all font-medium shadow-lg shadow-teal-500/20 ${!viewUrl ? "col-span-2" : ""
                                     }`}
                             >
                                 <Download className="w-4 h-4" />

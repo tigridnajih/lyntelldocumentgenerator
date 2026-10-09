@@ -1,8 +1,9 @@
 "use client";
 
-import { useFormContext } from "react-hook-form";
+import { useFormContext, Path, PathValue } from "react-hook-form";
 import { useState, useCallback, useRef, useEffect } from "react";
 import { toast } from "sonner";
+import { DocumentFormValues } from "@/lib/schemas";
 import { VoiceMicrophone } from "./VoiceMicrophone";
 import { TranscriptModal } from "./TranscriptModal";
 
@@ -103,10 +104,11 @@ export function VoiceManager() {
             const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
             stream.getTracks().forEach((track) => track.stop());
             return { success: true };
-        } catch (error: any) {
+        } catch (error: unknown) {
+            const errorName = error instanceof Error ? error.name : "UnknownError";
             return {
                 success: false,
-                errorName: error.name || "UnknownError",
+                errorName,
             };
         }
     };
@@ -168,18 +170,18 @@ export function VoiceManager() {
             const { data } = await response.json();
 
             let updatedCount = 0;
-            const processFields = (obj: any, prefix: string = "") => {
+            const processFields = (obj: Record<string, unknown>, prefix: string = "") => {
                 Object.keys(obj).forEach(key => {
                     const value = obj[key];
 
                     if (value !== null && value !== undefined && value !== "") {
                         if (typeof value === 'object' && !Array.isArray(value)) {
                             // Recursively process nested objects (like clientDetails)
-                            processFields(value, prefix ? `${prefix}.${key}` : key);
+                            processFields(value as Record<string, unknown>, prefix ? `${prefix}.${key}` : key);
                         } else {
                             // Directly set fields or arrays (items/gstList)
-                            const fieldPath = prefix ? `${prefix}.${key}` : key;
-                            setValue(fieldPath as any, value, {
+                            const fieldPath = (prefix ? `${prefix}.${key}` : key) as Path<DocumentFormValues>;
+                            setValue(fieldPath, value as PathValue<DocumentFormValues, Path<DocumentFormValues>>, {
                                 shouldValidate: true,
                                 shouldDirty: true,
                                 shouldTouch: true
@@ -200,9 +202,10 @@ export function VoiceManager() {
 
             setShowModal(false);
             setTranscript("");
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error(err);
-            toast.error(err.message || "Failed to process command");
+            const message = err instanceof Error ? err.message : "Failed to process command";
+            toast.error(message);
         } finally {
             setIsProcessing(false);
         }
